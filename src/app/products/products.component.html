@@ -1,0 +1,25 @@
+<div class="product-list">
+    <mat-card *ngFor="let product of products$ | async" class="product-card">
+        <mat-card-header>
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="product.image" alt="{{ product.title }}">
+        <mat-card-content>
+            <p>{{ product.description }}</p>
+            <p><strong>Price:</strong> {{ product.price | currency }}</p>
+            <p><strong>Rating:</strong> {{ product.rating?.rate }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-icon-button (click)="viewProduct(product.id)">
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button (click)="editProduct(product.id)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteProduct(product.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
