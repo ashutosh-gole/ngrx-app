@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { loadProducts } from '../store/actions/product.actions';
+import { loadProducts } from '../store/products/actions/product.actions';
 import { select, Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
-import { getProduct } from '../store/selectors/product.selectors';
+import { getProduct } from '../store/products/selectors/product.selectors';
 
 @Component({
   selector: 'app-view-product',

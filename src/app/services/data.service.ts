@@ -8,7 +8,7 @@ import { Product } from '../models/product.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class DataService {
   private apiUrl = 'https://fakestoreapi.com/products'; // Replace with your actual API URL
 
   httpOptions = {

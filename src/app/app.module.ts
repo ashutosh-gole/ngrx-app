@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
+import { reducers, metaReducers } from './store/products/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -14,7 +14,8 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductEffects } from './store/effects/product.effects';
+import { ProductEffects } from './store/products/effects/product.effects';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,14 +30,6 @@ import { ProductEffects } from './store/effects/product.effects';
     MaterialModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: false,
-        strictActionImmutability: false,
-        strictStateSerializability: false,
-        strictActionSerializability: false,
-        strictActionWithinNgZone: false,
-        strictActionTypeUniqueness: false,
-      },
       metaReducers,
     }),
     EffectsModule.forRoot([ProductEffects]),
@@ -45,7 +38,8 @@ import { ProductEffects } from './store/effects/product.effects';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    // provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

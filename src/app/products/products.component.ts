@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllProducts } from '../store/selectors/product.selectors';
+import { selectAllProducts } from '../store/products/selectors/product.selectors';
 import { Product } from '../models/product.model';
-import { deleteProduct, loadProducts } from '../store/actions/product.actions';
+import { deleteProduct, loadProducts } from '../store/products/actions/product.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,10 +22,6 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProducts();
-  }
-
-  getProducts() {
     this.store.dispatch(loadProducts());
   }
 
