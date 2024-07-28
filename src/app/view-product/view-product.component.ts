@@ -22,7 +22,6 @@ export class ViewProductComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
-    this.store.dispatch(loadProducts());
     this.product$ = this.store.pipe(select(getProduct, { id }));
   }
 
