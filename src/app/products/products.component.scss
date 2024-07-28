@@ -7,4 +7,10 @@
 .product-card {
     width: 300px;
     margin: 10px;
+
+    img {
+        height: 250px !important;
+        width: 100% !important;
+        padding: 24px;
+    }
 }

@@ -1,0 +1,23 @@
+.app {
+    .header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        position: fixed;
+        background-color: #ecce96;
+        font-size: 26px;
+        font-weight: 500;
+    }
+
+    .content {
+        padding-top: 10px;
+        background-color: #ffffff;
+        position: relative;
+        top: 70px;
+        height: calc(100vh - 80px);
+        min-height: calc(100vh - 80px);
+        overflow-y: scroll;
+    }
+}

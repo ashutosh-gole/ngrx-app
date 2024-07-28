@@ -16,13 +16,15 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductEffects } from './store/products/effects/product.effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { TruncatePipe } from './pipe/truncate/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     ViewProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -32,14 +34,14 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
-    // provideHttpClient(withFetch())
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
