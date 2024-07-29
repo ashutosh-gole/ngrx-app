@@ -1,3 +1,6 @@
+<div>
+    <button mat-fab color="primary" (click)="addProduct()">Add Product</button>
+</div>
 <div class="product-list">
     <mat-card *ngFor="let product of products$ | async" class="product-card">
         <mat-card-header>

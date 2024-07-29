@@ -16,6 +16,7 @@ import { MaterialModule } from './material/material.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TruncatePipe } from './pipe/truncate/truncate.pipe';
 import { ProductEffects } from './store/products/effects/product.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import { ProductEffects } from './store/products/effects/product.effects';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {

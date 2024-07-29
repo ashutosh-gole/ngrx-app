@@ -5,6 +5,8 @@ import { selectAllProducts } from '../store/products/selectors/product.selectors
 import { Product } from '../models/product.model';
 import { deleteProduct, loadProducts } from '../store/products/actions/product.actions';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +18,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.products$ = this.store.pipe(select(selectAllProducts));
   }
@@ -29,8 +32,23 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/products', id]);
   }
 
+  addProduct(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '400px',
+      data: { product: {}, isEdit: false }
+    });
+  }
+
   editProduct(id: number): void {
-    // Implement edit logic here
+    this.products$.subscribe(products => {
+      const product = products.find(p => p.id === id);
+      if (product) {
+        const dialogRef = this.dialog.open(AddProductComponent, {
+          width: '400px',
+          data: { product, isEdit: true }
+        });
+      }
+    });
   }
 
   deleteProduct(id: number): void {
