@@ -7,6 +7,7 @@ import { deleteProduct, loadProducts } from '../store/products/actions/product.a
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
+import { logout } from '../store/app/actions/app.action';
 
 @Component({
   selector: 'app-products',
@@ -33,22 +34,19 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct(): void {
-    const dialogRef = this.dialog.open(AddProductComponent, {
+    this.dialog.open(AddProductComponent, {
       width: '400px',
       data: { product: {}, isEdit: false }
     });
   }
 
-  editProduct(id: number): void {
-    this.products$.subscribe(products => {
-      const product = products.find(p => p.id === id);
-      if (product) {
-        const dialogRef = this.dialog.open(AddProductComponent, {
-          width: '400px',
-          data: { product, isEdit: true }
-        });
-      }
-    });
+  editProduct(product: Product): void {
+    if (product) {
+      const dialogRef = this.dialog.open(AddProductComponent, {
+        width: '400px',
+        data: { product, isEdit: true }
+      });
+    }
   }
 
   deleteProduct(id: number): void {
@@ -56,7 +54,7 @@ export class ProductsComponent implements OnInit {
   }
 
   logout(): void {
-
+    this.store.dispatch(logout());
   }
 
 }

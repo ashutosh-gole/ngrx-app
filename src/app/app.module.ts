@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers, metaReducers } from './store/products/reducers';
 import { ProductsComponent } from './products/products.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -18,6 +17,7 @@ import { TruncatePipe } from './pipe/truncate/truncate.pipe';
 import { ProductEffects } from './store/products/effects/product.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterSerializer } from './serializer/router-serializer';
+import { reducers, metaReducers } from './store';
 
 @NgModule({
   declarations: [

@@ -6,8 +6,9 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { productReducer, ProductState } from './product.reducer';
+import { productReducer, ProductState } from './products/reducers/product.reducer';
 import { DEFAULT_ROUTER_FEATURENAME, routerReducer, RouterReducerState } from '@ngrx/router-store';
+import { debugReducer, logoutReducer } from './app/reducers/app.reducers';
 
 export const PRODUCT_KEY = 'products';
 
@@ -21,4 +22,4 @@ export const reducers: ActionReducerMap<State> = {
   [PRODUCT_KEY]: productReducer
 };
 
-export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
+export const metaReducers: MetaReducer<State>[] = isDevMode() ? [debugReducer, logoutReducer] : [logoutReducer];
