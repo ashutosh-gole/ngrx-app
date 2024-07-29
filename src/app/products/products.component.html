@@ -21,6 +21,7 @@
             <p>{{ product.description | truncate : 72 }}</p>
             <p><strong>Price:</strong> {{ product.price | currency }}</p>
             <p><strong>Rating:</strong> {{ product.rating?.rate }}</p>
+            <p><strong>Count:</strong> {{ product.rating?.count }}</p>
         </mat-card-content>
         <mat-card-actions>
             <button mat-icon-button (click)="viewProduct(product.id)">

@@ -25,7 +25,8 @@ export class AddProductComponent implements OnInit {
       image: [data.product?.image || '', Validators.required],
       description: [data.product?.description || '', Validators.required],
       price: [data.product?.price || '', Validators.required],
-      rating: [data.product?.rating?.rate || '', Validators.required]
+      rate: [data.product?.rating?.rate || '', Validators.required],
+      count: [data.product?.rating?.count || '', Validators.required]
     });
   }
 
@@ -33,7 +34,19 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      const product: Product = { ...this.data.product, ...this.productForm.value };
+      const product: Product = {
+        id: this.data.product.id || null,
+        title: this.productForm?.controls['title']?.value,
+        category: this.productForm?.controls['category']?.value,
+        image: this.productForm?.controls['image']?.value,
+        description: this.productForm?.controls['description']?.value,
+        price: this.productForm?.controls['price']?.value,
+        rating: {
+          rate: this.productForm?.controls['rate']?.value,
+          count: this.productForm?.controls['count']?.value
+        }
+      };
+
       if (this.data.isEdit) {
         this.store.dispatch(updateProduct({ product }));
       } else {
