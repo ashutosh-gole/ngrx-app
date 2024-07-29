@@ -17,6 +17,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TruncatePipe } from './pipe/truncate/truncate.pipe';
 import { ProductEffects } from './store/products/effects/product.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterSerializer } from './serializer/router-serializer';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       metaReducers,
     }),
     EffectsModule.forRoot([ProductEffects]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      serializer: RouterSerializer
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [
