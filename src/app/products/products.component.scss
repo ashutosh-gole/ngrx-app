@@ -1,16 +1,22 @@
+.action-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
 .product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
 
-.product-card {
-    width: 300px;
-    margin: 10px;
+    .product-card {
+        width: 300px;
+        margin: 10px;
 
-    img {
-        height: 250px !important;
-        width: 100% !important;
-        padding: 24px;
+        img {
+            height: 250px !important;
+            width: 100% !important;
+            padding: 24px;
+        }
     }
 }

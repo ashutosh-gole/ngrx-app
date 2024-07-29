@@ -55,4 +55,8 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(deleteProduct({ id }));
   }
 
+  logout(): void {
+
+  }
+
 }
