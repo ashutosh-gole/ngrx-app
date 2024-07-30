@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ngrx-app": "node dist/ngrx-app/server/server.mjs"
+    "serve:ssr:ngrx-app": "node dist/ngrx-app/server/server.mjs",
+    "firebase:deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {
