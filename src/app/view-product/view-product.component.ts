@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { loadProducts } from '../store/products/actions/product.actions';
 import { select, Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
-import { getProduct } from '../store/products/selectors/product.selectors';
+import { getProduct, getProductUsingNgrxRouter } from '../store/products/selectors/product.selectors';
 
 @Component({
   selector: 'app-view-product',
@@ -12,17 +12,27 @@ import { getProduct } from '../store/products/selectors/product.selectors';
   styleUrl: './view-product.component.scss'
 })
 export class ViewProductComponent implements OnInit {
-  product$: Observable<Product | undefined>;
+  private store = inject(Store);
+  product$ = this.store.pipe(select(getProductUsingNgrxRouter));
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private store: Store
   ) { }
 
   ngOnInit(): void {
-    const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
-    this.product$ = this.store.pipe(select(getProduct, { id }));
+    // using angular activatedRoute functionality
+    // const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    // this.product$ = this.store.pipe(select(getProduct, { id }));
+
+    // or
+
+    // using ngrx router functionality
+    // commneted this code and direct assign value to product$ at line:16 ==> Store directly injected in variable at line:15
+    // this.product$ = this.store.pipe(select(getProductUsingNgrxRouter));
+
+    // if user refresh the page and products are empty so we need dispatch loadProducts()
+    this.store.dispatch(loadProducts());
   }
 
   goBack(): void {

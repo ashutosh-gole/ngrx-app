@@ -13,7 +13,7 @@ import { debugReducer, logoutReducer } from './app/reducers/app.reducers';
 export const PRODUCT_KEY = 'products';
 
 export interface State {
-  [DEFAULT_ROUTER_FEATURENAME]: RouterReducerState;
+  [DEFAULT_ROUTER_FEATURENAME]: RouterReducerState<any>;
   [PRODUCT_KEY]: ProductState;
 }
 

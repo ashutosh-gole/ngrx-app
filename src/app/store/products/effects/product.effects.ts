@@ -7,7 +7,7 @@ import { DataService } from '../../../services/data/data.service';
 
 @Injectable()
 export class ProductEffects {
-    private actions$ = inject(Actions);
+    private actions = inject(Actions);
     private dataService = inject(DataService);
 
     // injection at constructor level not work -> throws error
@@ -22,7 +22,7 @@ export class ProductEffects {
     //     ), { dispatch: false });
 
     loadProducts$ = createEffect(() =>
-        this.actions$.pipe(
+        this.actions.pipe(
             ofType(ProductActions.loadProducts),
             mergeMap(() => this.dataService.getProducts().pipe(
                 map(products => ProductActions.loadProductsSuccess({ products })),
@@ -32,7 +32,7 @@ export class ProductEffects {
     );
 
     addProduct$ = createEffect(() =>
-        this.actions$.pipe(
+        this.actions.pipe(
             ofType(ProductActions.addProduct),
             mergeMap(action => this.dataService.addProduct(action.product).pipe(
                 map(product => ProductActions.addProductSuccess({ product })),
@@ -42,7 +42,7 @@ export class ProductEffects {
     );
 
     updateProduct$ = createEffect(() =>
-        this.actions$.pipe(
+        this.actions.pipe(
             ofType(ProductActions.updateProduct),
             mergeMap(action => this.dataService.updateProduct(action.product.id, action.product).pipe(
                 map(product => ProductActions.updateProductSuccess({ product })),
@@ -52,7 +52,7 @@ export class ProductEffects {
     );
 
     deleteProduct$ = createEffect(() =>
-        this.actions$.pipe(
+        this.actions.pipe(
             ofType(ProductActions.deleteProduct),
             mergeMap(action => this.dataService.deleteProduct(action.id).pipe(
                 map(() => ProductActions.deleteProductSuccess({ id: action.id })),
