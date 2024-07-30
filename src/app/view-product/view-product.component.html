@@ -7,8 +7,6 @@
     <mat-card-content>
         <p>{{ product.description }}</p>
         <p><strong>Price:</strong> {{ product.price | currency }}</p>
-        <p><strong>Rate:</strong> {{ product.rating?.rate }}</p>
-        <p><strong>Count:</strong> {{ product.rating?.count }}</p>
     </mat-card-content>
     <mat-card-actions class="action-area">
         <button mat-button (click)="goBack()">Back</button>

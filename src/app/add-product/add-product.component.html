@@ -40,22 +40,6 @@
                 Price is required
             </mat-error>
         </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Rate</mat-label>
-            <input matInput type="number" formControlName="rate">
-            <mat-error *ngIf="productForm.get('rate').hasError('required')">
-                Rate is required
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Count</mat-label>
-            <input matInput type="number" formControlName="count">
-            <mat-error *ngIf="productForm.get('count').hasError('required')">
-                Count is required
-            </mat-error>
-        </mat-form-field>
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">

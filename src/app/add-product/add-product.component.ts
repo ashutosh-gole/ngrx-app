@@ -24,9 +24,7 @@ export class AddProductComponent implements OnInit {
       category: [data.product?.category || '', Validators.required],
       image: [data.product?.image || '', Validators.required],
       description: [data.product?.description || '', Validators.required],
-      price: [data.product?.price || '', Validators.required],
-      rate: [data.product?.rating?.rate || '', Validators.required],
-      count: [data.product?.rating?.count || '', Validators.required]
+      price: [data.product?.price || '', Validators.required]
     });
   }
 
@@ -40,11 +38,7 @@ export class AddProductComponent implements OnInit {
         category: this.productForm?.controls['category']?.value,
         image: this.productForm?.controls['image']?.value,
         description: this.productForm?.controls['description']?.value,
-        price: this.productForm?.controls['price']?.value,
-        rating: {
-          rate: this.productForm?.controls['rate']?.value,
-          count: this.productForm?.controls['count']?.value
-        }
+        price: this.productForm?.controls['price']?.value
       };
 
       if (this.data.isEdit) {
