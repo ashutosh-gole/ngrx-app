@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
-import { getProduct, getProductUsingNgrxRouter } from '../store/products/selectors/product.selectors';
+import { getProduct, getProductById, getProductUsingNgrxRouter } from '../store/products/selectors/product.selectors';
 
 @Component({
   selector: 'app-view-product',
@@ -12,21 +12,30 @@ import { getProduct, getProductUsingNgrxRouter } from '../store/products/selecto
   styleUrl: './view-product.component.scss'
 })
 export class ViewProductComponent implements OnInit {
+  // Please check product.effects.ts file for diff selectors method
+  // now we used method 4 for fecthing product details
+
+  // method 2
+  // product$: Observable<Product>;
+
+  // method 4
   private store = inject(Store);
   product$ = this.store.pipe(select(getProductUsingNgrxRouter));
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    // private activatedRoute: ActivatedRoute,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    // method 2
     // using angular activatedRoute functionality
     // const id = +this.activatedRoute.snapshot.paramMap.get('id')!;
-    // this.product$ = this.store.pipe(select(getProduct, { id }));
+    // this.product$ = this.store.select(getProduct(id));
 
     // or
 
+    // method 4
     // using ngrx router functionality
     // commneted this code and direct assign value to product$ at line:16 ==> Store directly injected in variable at line:15
     // this.product$ = this.store.pipe(select(getProductUsingNgrxRouter));
