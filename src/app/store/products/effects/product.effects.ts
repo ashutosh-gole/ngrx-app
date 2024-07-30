@@ -10,7 +10,7 @@ export class ProductEffects {
     private actions = inject(Actions);
     private dataService = inject(DataService);
 
-    // injection at constructor level not work -> throws error
+    // injection at constructor level not work for effects in angular 18 -> throws error
     constructor(
         // private actions$: Actions,
         // private dataService: DataService
